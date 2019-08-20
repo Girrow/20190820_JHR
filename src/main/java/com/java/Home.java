@@ -37,7 +37,7 @@ public class Home extends HttpServlet {
 			/**/
 			Hadoop hadp = new Hadoop();
 			HashMap<String,Object> resultMap =hadp.run(file_name);
-			req.setAttribute("result", resultMap);
+			req.setAttribute("result", resultMap.toString());
 			
 			/**/
 			RequestDispatcher rd = req.getRequestDispatcher(viewPath("result"));
