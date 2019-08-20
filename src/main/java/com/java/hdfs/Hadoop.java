@@ -197,9 +197,11 @@ public class Hadoop {
 						if(c) {
 							setMap.put("name", b);
 							sb2.append(b);
+							c=false;
 						}else {
 							setMap.put("value", b);
 							sb2.append(" :"+b+"\n");
+							c=true;
 						}
 					}
 					returnList.add(setMap);
