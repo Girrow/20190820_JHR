@@ -57,6 +57,7 @@ public class Hadoop {
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
+					status=1;
 				}
 				
 			}
@@ -206,7 +207,6 @@ public class Hadoop {
 								sb2.append(" :"+b+"\n");
 								c=true;
 							}
-							
 						}
 					}
 					returnList.add(setMap);
