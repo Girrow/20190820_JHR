@@ -81,7 +81,7 @@ tfoot td {
         </tr>
       </tfoot>
       <tbody>
-      <c:forEach var="resultItem" items="${result}">
+      <c:forEach var="resultItem" items="${result.result}">
         <tr>
           <th scope="row"><c:out value="${resultItem.name}" /></th>
           <td><c:out value="${resultItem.value}" /></td>
