@@ -94,6 +94,11 @@ public class Hadoop {
 			// 파일시스템 정보 정의
 			localSystem = FileSystem.getLocal(localConf);
 			hadoopSystem = FileSystem.get(hadoopConf);
+			/**/
+			if(hadoopSystem.exists(new Path("/output"))) {
+				hadoopSystem.delete(new Path("/output"), true);
+			}
+			/**/
 		} catch (Exception e) {
 			e.printStackTrace();
 			status = false;
@@ -126,6 +131,7 @@ public class Hadoop {
 			status = false;
 		}
 		System.out.println("Hadoop.fileCopy() >> End");
+		
 		return status;
 	}
 	
@@ -158,6 +164,7 @@ public class Hadoop {
 	
 	// 정제 결과 데이터 가져오기 메소드
 	protected List<HashMap> resultData() throws IOException {
+		
 		/**/
 		List<HashMap> returnList = new ArrayList<HashMap>();
 		/**/
@@ -168,11 +175,7 @@ public class Hadoop {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder sb2 = new StringBuilder();
 		// 정제 결과 경로에 존재 여부 확인
-		/**/
-		if(hadoopSystem.exists(new Path("/output"))) {
-			hadoopSystem.delete(new Path("/output"), true);
-		}
-		/**/
+		
 		if(hadoopSystem.exists(targetPath)){
 			// 정제 결과 대상 파일 읽어 오기
 			FSDataInputStream fsis = hadoopSystem.open(targetPath);
