@@ -41,6 +41,17 @@ public class Hadoop {
 		int status = 0;
 		// Hadoop 시스템 접속 하기 위하여 확인 요청
 		if(init(fileName)) {
+			
+			if(fileCopy(fileName)) {
+				try {
+					if(mapReduser()) {
+						resultMap.put("result", resultData());
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
 			/**************************************************
 			 * >> 상태값 설정 << 
 			 * 0 : 접속 오류 (Hadoop 연결 문제 발생)
