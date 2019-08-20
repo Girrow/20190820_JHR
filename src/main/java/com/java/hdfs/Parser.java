@@ -75,6 +75,7 @@ public void setActualElapsedTime(int actualElapsedTime) {
       month = Integer.parseInt(colums[1]);
 
       // 항공사 코드 설정
+      
       uniqueCarrier = colums[8];
       
       // 항공기 출발 지연 시간 설정
