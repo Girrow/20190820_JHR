@@ -163,11 +163,11 @@ public class Hadoop {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder sb2 = new StringBuilder();
 		// 정제 결과 경로에 존재 여부 확인
-		/*
+		/**/
 		if(hadoopSystem.exists(new Path("/output"))) {
 			hadoopSystem.delete(new Path("/output"), true);
 		}
-		*/
+		/**/
 		if(hadoopSystem.exists(targetPath)){
 			// 정제 결과 대상 파일 읽어 오기
 			FSDataInputStream fsis = hadoopSystem.open(targetPath);
