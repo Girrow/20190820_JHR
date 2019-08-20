@@ -183,8 +183,14 @@ public class Hadoop {
 				String line = null;
 				while ((line = br.readLine()) != null) {
 					String[] a=line.split("\\s");
+					boolean c=true;
 					for(String b : a) {
-						sb2.append(b);
+						if(c) {
+							sb2.append(b);
+						}else {
+							sb2.append(" :"+b+"\n");
+						}
+						
 					}
 				}
 			} catch (Exception e) {
@@ -196,7 +202,7 @@ public class Hadoop {
 			fsis.close();
 		}
 		System.out.println("Hadoop.resultData() >> End");
-		return sb.toString();
+		return sb2.toString();
 	}
 
 }
