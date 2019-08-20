@@ -159,6 +159,11 @@ public class Hadoop {
 		// 결과 문자열에 담기 위한 변수
 		StringBuilder sb = new StringBuilder();
 		// 정제 결과 경로에 존재 여부 확인
+		/*
+		if(hadoopSystem.exists(new Path("/output"))) {
+			hadoopSystem.delete(new Path("/output"), true);
+		}
+		*/
 		if(hadoopSystem.exists(targetPath)){
 			// 정제 결과 대상 파일 읽어 오기
 			FSDataInputStream fsis = hadoopSystem.open(targetPath);
@@ -167,6 +172,9 @@ public class Hadoop {
 				// 정제 결과를 문자열 변수에 담기
 				sb.append(byteRead);
 			}
+			/**/
+			System.out.println("$$$$$$$$$$$ sb =="+sb);
+			/**/
 			fsis.close();
 		}
 		System.out.println("Hadoop.resultData() >> End");
