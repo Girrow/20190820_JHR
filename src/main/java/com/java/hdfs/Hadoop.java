@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
@@ -155,7 +157,10 @@ public class Hadoop {
 	}
 	
 	// 정제 결과 데이터 가져오기 메소드
-	protected String resultData() throws IOException {
+	protected List<HashMap> resultData() throws IOException {
+		/**/
+		List<HashMap> returnList = new ArrayList<HashMap>();
+		/**/
 		System.out.println("Hadoop.resultData() >> Start");
 		// 정제 결과 데이터 경로 객체 생성
 		Path targetPath = new Path(OUTPUT + TARGET);
@@ -183,15 +188,18 @@ public class Hadoop {
 				String line = null;
 				while ((line = br.readLine()) != null) {
 					String[] a=line.split("\\s");
+					HashMap<String,Object> setMap = new HashMap<String,Object>();
 					boolean c=true;
 					for(String b : a) {
 						if(c) {
+							setMap.put("name", b);
 							sb2.append(b);
 						}else {
+							setMap.put("value", b);
 							sb2.append(" :"+b+"\n");
 						}
-						
 					}
+					returnList.add(setMap);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -201,8 +209,11 @@ public class Hadoop {
 			System.out.println("sb2 == "+sb2);
 			fsis.close();
 		}
+		/*
 		System.out.println("Hadoop.resultData() >> End");
 		return sb2.toString();
+		*/
+		return returnList;
 	}
 
 }
