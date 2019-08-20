@@ -46,6 +46,9 @@ public class Hadoop {
 				try {
 					if(mapReduser()) {
 						resultMap.put("result", resultData());
+						status=2;
+					}else {
+						status=1;
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
