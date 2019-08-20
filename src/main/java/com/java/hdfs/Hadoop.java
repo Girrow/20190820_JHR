@@ -1,6 +1,9 @@
 package com.java.hdfs;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 
 import org.apache.hadoop.conf.Configuration;
@@ -158,6 +161,7 @@ public class Hadoop {
 		Path targetPath = new Path(OUTPUT + TARGET);
 		// 결과 문자열에 담기 위한 변수
 		StringBuilder sb = new StringBuilder();
+		StringBuilder sb2 = new StringBuilder();
 		// 정제 결과 경로에 존재 여부 확인
 		/*
 		if(hadoopSystem.exists(new Path("/output"))) {
@@ -173,8 +177,22 @@ public class Hadoop {
 				sb.append(byteRead);
 			}
 			/**/
-			System.out.println("$$$$$$$$$$$ sb =="+sb);
+			try {
+				InputStream fsiss = hadoopSystem.open(targetPath);
+				BufferedReader br = new BufferedReader(new InputStreamReader(fsiss));
+				String line = null;
+				while ((line = br.readLine()) != null) {
+					String[] a=line.split("\\s");
+					for(String b : a) {
+						sb2.append(b);
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			/**/
+			
+			System.out.println("sb2 == "+sb2);
 			fsis.close();
 		}
 		System.out.println("Hadoop.resultData() >> End");
