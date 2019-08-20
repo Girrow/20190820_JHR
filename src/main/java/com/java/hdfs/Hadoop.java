@@ -206,9 +206,13 @@ public class Hadoop {
 					}
 					returnList.add(setMap);
 				}
+				br.close();
+				fsiss.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+			
 			/**/
 			
 			System.out.println("sb2 == "+sb2);
